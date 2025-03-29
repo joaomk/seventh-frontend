@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulário de Validação</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: flex;
+        margin-bottom: 5px;
+      }
+      input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      #mensagem {
+        margin-top: 15px;
+        padding: 10px;
+        border-radius: 4px;
+      }
+      .sucesso {
+        background-color: #dff0d8;
+        color: #3c763d;
+      }
+      .erro {
+        background-color: #f2dede;
+        color: #a94442;
+      }
+      .campo-erro {
+        border-color: #a94442;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Formulário de Validação</h1>
+    <form id="meuFormulario">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" />
+      </div>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="mensagem"></div>
+
+    <script>
+      document
+        .getElementById("meuFormulario")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const nome = document.getElementById("nome");
+          const email = document.getElementById("email");
+          const mensagemDiv = document.getElementById("mensagem");
+
+          nome.classList.remove("campo-erro");
+          email.classList.remove("campo-erro");
+
+          if (!nome.value.trim() || !email.value.trim()) {
+            nome.classList.add("campo-erro");
+            mensagemDiv.textContent = "Por favor, preencha todos os campos";
+            mensagemDiv.className = "erro";
+            return;
+          }
+          mensagemDiv.textContent = "Formulário enviado com sucesso!";
+          mensagemDiv.className = "sucesso";
+        });
+    </script>
+  </body>
+</html>
